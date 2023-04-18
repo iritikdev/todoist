@@ -63,12 +63,14 @@ function App() {
         width={"100vw"}
       />
       <Box
-        width={[
-          "24rem", // 0-30em
-          "32rem", // 30em-48em
-          "38rem", // 48em-62em
-          "40rem", // 62em+
-        ]}
+        paddingX={{
+          base: "5",
+        }}
+        width={{
+          base: "26rem",
+          md: "32rem",
+          lg: "40rem",
+        }}
         margin={"0 auto"}
         position={"relative"}
         top={-250}

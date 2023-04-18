@@ -20,7 +20,8 @@ function TodoList({
   return (
     <List
       bgColor={colorMode === "dark" ? "blackAlpha.800" : "white"}
-      borderRadius={"md"}
+      borderTopLeftRadius={"md"}
+      borderTopRightRadius={"md"}
     >
       {tasks
         .filter((task) => {

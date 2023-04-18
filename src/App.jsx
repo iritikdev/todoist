@@ -109,6 +109,27 @@ function App() {
           handleTaskDelete={handleTaskDelete}
           filter={filter}
         />
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          borderBottomLeftRadius={"md"}
+          borderBottomRightRadius={"md"}
+          py={"4"}
+          bgColor={colorMode === "dark" ? "black" : "white"}
+          px={3}
+        >
+          <span>
+            {tasks.length === completedTask.length
+              ? "No todo items left!"
+              : `${tasks.length - completedTask.length} item left.`}
+          </span>
+          <span>
+            {completedTask.length === 0
+              ? `No task is completed`
+              : `${completedTask.length} task is completed🔥`}
+          </span>
+        </Box>
 
         <Box
           className="footer"
@@ -122,14 +143,9 @@ function App() {
           borderRadius={"md"}
           bgColor={colorMode === "dark" ? "black" : "white"}
         >
-          <span>
-            {tasks.length === completedTask.length
-              ? "No todo items left!"
-              : `${tasks.length - completedTask.length} item left.`}
-          </span>
-          <Button onClick={() => setTasks([])} variant="ghost">
+          {/* <Button onClick={() => setTasks([])} variant="ghost">
             Reset
-          </Button>
+          </Button> */}
           <Button onClick={() => setFilter("all")} variant="ghost">
             All
           </Button>
@@ -139,11 +155,6 @@ function App() {
           <Button onClick={() => setFilter("active")} variant="ghost">
             Active
           </Button>
-          <span>
-            {completedTask.length === 0
-              ? `No task is completed...`
-              : `${completedTask.length} task is completed🔥`}
-          </span>
         </Box>
       </Box>
     </Flex>

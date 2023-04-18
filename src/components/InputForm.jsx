@@ -5,7 +5,7 @@ function InputForm({ getTask }) {
   const [task, setTask] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    getTask(task);
+    if (task !== "") getTask(task);
     setTask("");
   };
   return (
@@ -17,7 +17,7 @@ function InputForm({ getTask }) {
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <Button title="add" />
+        <Button title="+" />
       </form>
     </>
   );

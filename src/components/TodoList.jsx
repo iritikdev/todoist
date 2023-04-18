@@ -1,17 +1,45 @@
-import React from "react";
-
-function TodoList({ tasks, handleTaskRemove }) {
-  const handleDelete = (index) => {
-    handleTaskRemove(index);
-  };
+function TodoList({ tasks, handleTaskRemove, handleTaskDelete, filter }) {
+  console.log(filter);
   return (
     <ul>
-      {tasks.map((task, index) => (
+      {tasks
+        .filter((task) => {
+          if (filter === "completed") {
+            return task.isCompleted;
+          } else if (filter === "active") {
+            return !task.isCompleted;
+          } else {
+            return true;
+          }
+        })
+        .map((task, index) => (
+          <>
+            {task.isCompleted ? (
+              <li style={{ textDecoration: "line-through" }} key={index}>
+                {task.name}
+              </li>
+            ) : (
+              <li key={index}>{task.name}</li>
+            )}
+
+            <button onClick={() => handleTaskRemove(task.id)}>completed</button>
+            <button onClick={() => handleTaskDelete(task.id)}>delete</button>
+          </>
+        ))}
+      {/* {tasks.map((task, index, ) => (
         <>
-          <li key={index}>{task}</li>
-          <button onClick={() => handleDelete(index)}>delete</button>
+          {task.isCompleted ? (
+            <li style={{ textDecoration: "line-through" }} key={index}>
+              {task.name}
+            </li>
+          ) : (
+            <li key={index}>{task.name}</li>
+          )}
+
+          <button onClick={() => handleTaskRemove(task.id)}>completed</button>
+          <button onClick={() => handleTaskDelete(task.id)}>delete</button>
         </>
-      ))}
+      ))} */}
     </ul>
   );
 }

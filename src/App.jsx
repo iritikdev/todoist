@@ -1,27 +1,67 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import InputForm from "./components/InputForm";
 import TodoList from "./components/TodoList";
-import DarkMode from "./components/DarkMode";
+import Button from "./components/Button";
 
 function App() {
-  const [tasks, setTasks] = useState(["task #1", "task #2"]);
+  const [filter, setFilter] = useState("all");
+
+  const [tasks, setTasks] = useState([
+    { id: 1, name: "👉 task #1", isCompleted: false },
+    { id: 2, name: "👉 task #2", isCompleted: false },
+    { id: 3, name: "👉 task #3", isCompleted: false },
+  ]);
+
+  const [completedTask, setCompletedTask] = useState([]);
+
+  useEffect(() => {
+    setCompletedTask(tasks.filter((t) => t.isCompleted === true));
+  }, [tasks]);
   const getTask = (task) => {
-    setTasks([...tasks, task]);
+    setTasks([
+      ...tasks,
+      { id: tasks.length + 1, name: task, isCompleted: false },
+    ]);
   };
-  const handleTaskRemove = (i) => {
-    setTasks(tasks.filter((task, index) => i !== index));
+
+  const handleTaskRemove = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, isCompleted: true } : task
+      )
+    );
   };
+
+  const handleTaskDelete = (id) => {
+    setTasks(tasks.filter((t) => t.id !== id));
+  };
+
   return (
     <>
-      <DarkMode />
       <InputForm getTask={getTask} />
-      <TodoList tasks={tasks} handleTaskRemove={handleTaskRemove} />
+      <hr />
+      <TodoList
+        tasks={tasks}
+        handleTaskRemove={handleTaskRemove}
+        handleTaskDelete={handleTaskDelete}
+        filter={filter}
+      />
       <p>
-        {tasks.length === 0
-          ? "No todo items left!"
-          : `${tasks.length} items left`}
+        {completedTask.length === 0
+          ? `No task is completed...`
+          : `${completedTask.length} task is completed🔥`}
       </p>
+      <p>
+        {tasks.length === completedTask.length
+          ? "No todo items left!"
+          : `${tasks.length - completedTask.length} item left.`}
+      </p>
+      <hr />
+      <Button title={"reset"} onClick={() => setTasks([])} />
+      <button onClick={() => setFilter("all")}>All</button>
+      <button onClick={() => setFilter("completed")}>Completed</button>
+      <button onClick={() => setFilter("active")}>Active</button>
     </>
   );
 }

@@ -38,6 +38,7 @@ function TodoList({
             sx={{
               display: "flex",
               justifyContent: "space-between",
+              justifyItems: "center",
               py: 2,
               px: 5,
             }}
@@ -59,6 +60,7 @@ function TodoList({
             </ListItem>
             <Box>
               <Button
+                display={"flex"}
                 key={index + 2}
                 onClick={() => handleTaskDelete(task.id)}
                 variant="unstyled"

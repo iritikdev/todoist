@@ -63,11 +63,14 @@ function App() {
         width={"100vw"}
       />
       <Box
+        fontSize={{
+          base: "14px",
+        }}
         paddingX={{
           base: "5",
         }}
         width={{
-          base: "26rem",
+          base: "100%",
           md: "32rem",
           lg: "40rem",
         }}

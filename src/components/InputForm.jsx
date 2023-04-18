@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import { Input, IconButton, Box } from "@chakra-ui/react";
+import { AiOutlineSend } from "react-icons/ai";
 
-function InputForm({ getTask }) {
+function InputForm({ getTask, colorMode }) {
   const [task, setTask] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -11,13 +12,30 @@ function InputForm({ getTask }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="enter your todo..."
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-        />
-        <Button title="+" />
+        <Box
+          display="flex"
+          py={3}
+          mb="3"
+          borderRadius={"md"}
+          bgColor={colorMode === "dark" ? "black" : "white"}
+          boxShadow="md"
+        >
+          <Input
+            py={3}
+            focusBorderColor="transparent"
+            type="text"
+            placeholder="Enter your todo..."
+            value={task}
+            fontSize={18}
+            onChange={(e) => setTask(e.target.value)}
+          />
+          <IconButton
+            type="submit"
+            aria-label="add to list"
+            icon={<AiOutlineSend size={24} />}
+            variant="unstyled"
+          />
+        </Box>
       </form>
     </>
   );

@@ -1,0 +1,59 @@
+<Box width={"40rem"} margin={"0 auto"}>
+        <Flex justifyContent="space-between" mb={6} mt={4}>
+          <Text variant="h1" fontSize="4xl" letterSpacing={5} fontWeight={800}>
+            TODO
+          </Text>
+          <IconButton
+            variant={"unstyled"}
+            icon={
+              colorMode === "dark" ? (
+                <BsFillBrightnessHighFill size={22} />
+              ) : (
+                <MdBrightness2 size={22} />
+              )
+            }
+            onClick={toggleColorMode}
+          />
+        </Flex>
+        <InputForm getTask={getTask} />
+        <hr />
+        <TodoList
+          tasks={tasks}
+          handleTaskRemove={handleTaskRemove}
+          handleTaskDelete={handleTaskDelete}
+          filter={filter}
+        />
+
+        <Box
+          className="footer"
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          boxShadow="md"
+          py={"2"}
+          px={3}
+        >
+          <span>
+            {tasks.length === completedTask.length
+              ? "No todo items left!"
+              : `${tasks.length - completedTask.length} item left.`}
+          </span>
+          <Button onClick={() => setTasks([])} variant="ghost">
+            Reset
+          </Button>
+          <Button onClick={() => setFilter("all")} variant="ghost">
+            All
+          </Button>
+          <Button onClick={() => setFilter("completed")} variant="ghost">
+            Completed
+          </Button>
+          <Button onClick={() => setFilter("active")} variant="ghost">
+            Active
+          </Button>
+          <span>
+            {completedTask.length === 0
+              ? `No task is completed...`
+              : `${completedTask.length} task is completed🔥`}
+          </span>
+        </Box>
+      </Box>

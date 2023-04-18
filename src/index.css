@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
-:root {
+/* :root {
   --bg-color: hsl(236, 33%, 92%);
   --card-bg: hsl(0, 0%, 98%);
   --text-color: hsl(0, 0%, 26%);
@@ -27,23 +27,8 @@
   --plus-color: white;
   --bg-img-mobile: url(./assets/bg-mobile-dark.jpg);
   --bg-img-desktop: url(./assets/bg-desktop-dark.jpg);
-}
+} */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  line-height: 1.4;
-  font-size: 1.8rem;
-  font-family: 'Josefin Sans', sans-serif;
-
-  background-color: var(--bg-color);
-  color: var(--text-color)
+.line-through {
+  text-decoration: "line-through"
 }
